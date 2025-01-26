@@ -1,95 +1,82 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client'
 
-export default function Home() {
+import React, { useState } from 'react';
+import Typography from '@mui/material/Typography';
+import Slider from '@mui/material/Slider';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button'
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid2';
+
+// Utility function to generate a random password using the built-in crypto API
+const generatePassword = (length) => {
+  const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+[]{}|;:,.<>?";
+  const array = new Uint32Array(length);
+  window.crypto.getRandomValues(array); // Generate random values
+  return array.map(val => charset[val % charset.length]).join(''); // Map to charset
+};
+
+const PasswordGenerator = () => {
+  const [password, setPassword] = useState('');
+  const [length, setLength] = useState(12);
+
+  // Handle password generation and hashing
+  const handleGenerateClick = async () => {
+    const newPassword = generatePassword(length);
+    setPassword(newPassword);
+  };
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <Box style={{ 
+      display: 'flex', 
+      justifyContent: 'center', 
+      alignItems: 'center', 
+      height: '100vh', 
+      flexDirection: 'column' 
+    }}>
+      <Paper style={{ 
+        padding: 3, 
+        textAlign: 'center', 
+        width: '100%', 
+        maxWidth: 400 
+      }}>
+        <Typography variant="h4" gutterBottom>Password Generator</Typography>
+        <Typography variant="body1" gutterBottom>Length: {length}</Typography>
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        <Slider
+          value={length}
+          onChange={(e, newValue) => setLength(newValue)}
+          min={8}
+          max={20}
+          step={1}
+          valueLabelDisplay="auto"
+        />
+
+        <TextField
+          label="Generated Password"
+          value={password}
+          fullWidth
+          variant="outlined"
+          margin="normal"
+          InputProps={{
+            readOnly: true,
+          }}
+        />
+
+        <Grid container spacing={2} justifyContent="center">
+          <Grid>
+            <Button 
+              variant="contained" 
+              color="primary" 
+              onClick={handleGenerateClick}>
+              Create Password
+            </Button>
+          </Grid>
+        </Grid>
+      </Paper>
+    </Box>
   );
-}
+};
+
+export default PasswordGenerator;
