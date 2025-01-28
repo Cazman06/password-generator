@@ -21,11 +21,15 @@ const PasswordGenerator = () => {
   const [password, setPassword] = useState('');
   const [length, setLength] = useState(12);
 
-  // Handle password generation and hashing
-  const handleGenerateClick = async () => {
+  // Handle password generation
+  const handleGenerateClick = () => {
     const newPassword = generatePassword(length);
     setPassword(newPassword);
   };
+
+  const handleCopyToClipboardClick = async (text) => {
+    await navigator.clipboard.writeText(text);
+  }
 
   return (
     <Box style={{ 
@@ -71,6 +75,13 @@ const PasswordGenerator = () => {
               color="primary" 
               onClick={handleGenerateClick}>
               Create Password
+            </Button>
+
+            <Button
+              variant='contained'
+              color='primary'
+              onClick={() => handleCopyToClipboardClick(text)}>
+              Copy Password
             </Button>
           </Grid>
         </Grid>
