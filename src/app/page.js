@@ -35,12 +35,32 @@ const StyledPaper = styled(Paper)`
 `;
 
 const StyledTextField = styled(TextField)`
-  background-color: #f5f5f5;
+  background-color: #f9f9f9;
   border-radius: 8px;
   padding: 10px;
   margin-bottom: 20px;
+  
   .MuiOutlinedInput-root {
     border-radius: 8px;
+    &.Mui-focused {
+      border-color: #FF677D; /* Matching border color for focus state */
+    }
+  }
+  
+  .MuiInputLabel-root {
+    color: #3f51b5; /* Color for the label */
+  }
+
+  .MuiInputBase-root {
+    color: #333; /* Text color inside the input field */
+  }
+
+  .MuiOutlinedInput-notchedOutline {
+    border-color: #ddd; /* Lighter border by default */
+  }
+  
+  .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+    border-color: #FF677D; /* Border color change on hover */
   }
 `;
 
