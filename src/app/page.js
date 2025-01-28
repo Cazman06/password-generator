@@ -136,7 +136,7 @@ const PasswordGenerator = () => {
               variant='contained'
               color='primary'
               className='copy-button'
-              onClick={() => handleCopyToClipboardClick(text)}>
+              onClick={() => handleCopyToClipboardClick(password)}>
               <b> Copy Password </b>
             </StyledButton>
           </Grid>
