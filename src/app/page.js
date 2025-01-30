@@ -44,24 +44,24 @@ const StyledTextField = styled(TextField)`
   .MuiOutlinedInput-root {
     border-radius: 8px;
     &.Mui-focused {
-      border-color: #FF677D; /* Matching border color for focus state */
+      border-color: #FF677D;
     }
   }
   
   .MuiInputLabel-root {
-    color: #3f51b5; /* Color for the label */
+    color: #3f51b5;
   }
 
   .MuiInputBase-root {
-    color: #333; /* Text color inside the input field */
+    color: #333;
   }
 
   .MuiOutlinedInput-notchedOutline {
-    border-color: #ddd; /* Lighter border by default */
+    border-color: #ddd;
   }
   
   .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
-    border-color: #FF677D; /* Border color change on hover */
+    border-color: #FF677D;
   }
 `;
 
@@ -97,7 +97,16 @@ const StyledButton = styled(Button)`
 `;
 
 const StyledSwitch = styled(Switch)`
-  && {
+
+&.MuiSwitch-root {
+    width: 60px;
+    height: 34px;
+    padding: 7px;
+    border-radius: 34px;
+    background-color: #eee;
+    transition: background-color 0.3s ease;
+  }
+  & {
     .MuiSwitch-switchBase {
       color: #FF677D;
       &:hover {
