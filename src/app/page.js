@@ -137,6 +137,32 @@ const StyledLabel = styled(Typography)`
   color: #333;
   margin-bottom: 10px;
   margin-top: 5px;
+  user-select: none;
+`;
+
+const StyledTitle = styled(Typography)`
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;                    
+  font-size: 3rem;                    
+  text-transform: uppercase;          
+  letter-spacing: 3px;               
+  color: #FF677D;
+  user-select: none;                   
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2); 
+  padding: 10px 0;                    
+
+  animation: fadeIn 1.5s ease-in-out;
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 `;
 
 const StyledSwitchContainer = styled(Box)`
@@ -195,7 +221,7 @@ const PasswordGenerator = () => {
   return (
     <StyledContainer>
       <StyledPaper>
-        <Typography variant="h4" gutterBottom>Password Generator</Typography>
+        <StyledTitle variant="h4" gutterBottom>Pass Smithy</StyledTitle>
 
         <StyledSlider
           defaultValue={20}
