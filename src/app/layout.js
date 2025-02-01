@@ -12,7 +12,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "PasswordZero"
+  title: "PassSmithy"
 };
 
 export default function RootLayout({ children }) {
