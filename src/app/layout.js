@@ -1,5 +1,9 @@
+'use client'
+
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import NavBar from './components/navigationbar';
+import PasswordGenerator from './page';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -11,15 +15,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = {
-  title: "PasswordZero"
-};
-
-export default function RootLayout({ children }) {
+export default function RootLayout() {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+        <NavBar></NavBar>
+        <PasswordGenerator></PasswordGenerator>
       </body>
     </html>
   );

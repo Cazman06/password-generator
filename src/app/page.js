@@ -195,8 +195,6 @@ const PasswordGenerator = () => {
   return (
     <StyledContainer>
       <StyledPaper>
-        <Typography variant="h4" gutterBottom>Password Generator</Typography>
-
         <StyledSlider
           defaultValue={20}
           value={length}
